@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NChavatte.HumanOrientedSerialization.CLI", "NChavatte.HumanOrientedSerialization.CLI\NChavatte.HumanOrientedSerialization.CLI.csproj", "{6A781402-BBF3-42EF-B231-D8DAFAA9F417}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NChavatte.HumanOrientedSerialization.CLI", "NChavatte.HumanOrientedSerialization.CLI\NChavatte.HumanOrientedSerialization.CLI.csproj", "{6A781402-BBF3-42EF-B231-D8DAFAA9F417}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NChavatte.HumanOrientedSerialization.CLI.Tests", "NChavatte.HumanOrientedSerialization.CLI.Tests\NChavatte.HumanOrientedSerialization.CLI.Tests.csproj", "{37A8B2B1-4D7D-4C2A-B394-F692D275AC13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6A781402-BBF3-42EF-B231-D8DAFAA9F417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A781402-BBF3-42EF-B231-D8DAFAA9F417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A781402-BBF3-42EF-B231-D8DAFAA9F417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37A8B2B1-4D7D-4C2A-B394-F692D275AC13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37A8B2B1-4D7D-4C2A-B394-F692D275AC13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37A8B2B1-4D7D-4C2A-B394-F692D275AC13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37A8B2B1-4D7D-4C2A-B394-F692D275AC13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
