@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.IO;
 using System.Text;
 
@@ -16,13 +17,21 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests.Resources
 
         public static byte[] GetResourceBytes(string resourceName)
         {
-            Type type = typeof(ResourceProvider);
-            string resourceFullName = $"{type.Namespace}.{resourceName}";
-            using (Stream stream = type.Assembly.GetManifestResourceStream(resourceFullName))
-            using (MemoryStream memoryStream = new MemoryStream())
+            try
             {
-                stream.CopyTo(memoryStream);
-                return memoryStream.ToArray();
+                Type type = typeof(ResourceProvider);
+                string resourceFullName = $"{type.Namespace}.{resourceName}";
+                using (Stream stream = type.Assembly.GetManifestResourceStream(resourceFullName))
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    stream.CopyTo(memoryStream);
+                    return memoryStream.ToArray();
+                }
+            }
+            catch (Exception)
+            {
+                TestContext.Error.WriteLine($"Cannot read test resource \"{resourceName}\"");
+                throw;
             }
         }
     }
