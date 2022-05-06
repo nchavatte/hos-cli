@@ -37,6 +37,7 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
         {
             string sutPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.exe");
             Process.StartInfo.FileName = sutPath;
+            Process.StartInfo.UseShellExecute = false;
             bool isStarted = Process.Start();
             if (isStarted)
                 Process.WaitForExit();
