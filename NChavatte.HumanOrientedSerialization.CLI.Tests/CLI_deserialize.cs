@@ -49,7 +49,9 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
 
             // Assert
             Assert.IsTrue(started, "Process did not start");
-            Assert.IsNotEmpty(_context.Process.StandardError.ReadToEnd().Trim(), "No error message");
+            string errorMessage = _context.Process.StandardError.ReadToEnd().Trim();
+            TestContext.WriteLine($"Actual error message: {errorMessage}");
+            Assert.IsNotEmpty(errorMessage, "No error message");
         }
 
         [Test]
