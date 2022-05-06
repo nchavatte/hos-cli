@@ -22,8 +22,7 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             // Arrange
             string serialFormPath = _context.WriteResourceIntoFile(serialFormName);
             string actualBinaryPath = _context.GetTempFile();
-            string sutPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.exe");
-            _context.Process.StartInfo = new ProcessStartInfo(sutPath, $"deserialize \"{serialFormPath}\" \"{actualBinaryPath}\"");
+            _context.Process.StartInfo.Arguments = $"deserialize \"{serialFormPath}\" \"{actualBinaryPath}\"";
 
             // Act
             _context.StartProcessAndWait();
@@ -42,8 +41,7 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             // Arrange
             string serialFormPath = "not-serial-form-file.txt";
             string actualBinaryPath = _context.GetTempFile();
-            string sutPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.exe");
-            _context.Process.StartInfo = new ProcessStartInfo(sutPath, $"deserialize \"{serialFormPath}\" \"{actualBinaryPath}\"");
+            _context.Process.StartInfo.Arguments = $"deserialize \"{serialFormPath}\" \"{actualBinaryPath}\"";
 
             // Act
             _context.StartProcessAndWait();
@@ -57,8 +55,7 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
         {
             // Arrange
             string serialFormPath = _context.WriteResourceIntoFile("serial-form.0.txt");
-            string sutPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.exe");
-            _context.Process.StartInfo = new ProcessStartInfo(sutPath, $"deserialize \"{serialFormPath}\"");
+            _context.Process.StartInfo.Arguments = $"deserialize \"{serialFormPath}\"";
 
             // Act
             _context.StartProcessAndWait();

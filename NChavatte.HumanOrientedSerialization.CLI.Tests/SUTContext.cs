@@ -1,4 +1,5 @@
 ﻿using NChavatte.HumanOrientedSerialization.CLI.Tests.Resources;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,6 +35,8 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
 
         public bool StartProcessAndWait()
         {
+            string sutPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.exe");
+            Process.StartInfo.FileName = sutPath;
             bool isStarted = Process.Start();
             if (isStarted)
                 Process.WaitForExit();

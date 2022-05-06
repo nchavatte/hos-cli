@@ -1,6 +1,4 @@
 ﻿using NUnit.Framework;
-using System.Diagnostics;
-using System.IO;
 
 namespace NChavatte.HumanOrientedSerialization.CLI.Tests
 {
@@ -20,14 +18,12 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
         public void Shoud_return_error_exit_code_on_bad_command(string commandLineArgs)
         {
             // Arrange
-            string sutPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.exe");
-            _context.Process.StartInfo = new ProcessStartInfo(sutPath, commandLineArgs);
+            _context.Process.StartInfo.Arguments = commandLineArgs;
 
             // Act
             _context.StartProcessAndWait();
 
             // Assert
-            TestContext.WriteLine($"Exit code: {_context.Process.ExitCode}");
             Assert.That(_context.Process.ExitCode, Is.EqualTo(1));
         }
 

@@ -22,11 +22,8 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
         {
             // Arrange
             string sourcePath = _context.WriteResourceIntoFile(sourceName);
-            string sutPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.exe");
-            _context.Process.StartInfo = new ProcessStartInfo(sutPath, $"serialize \"{sourcePath}\"")
-            {
-                RedirectStandardOutput = true
-            };
+            _context.Process.StartInfo.Arguments = $"serialize \"{sourcePath}\"";
+            _context.Process.StartInfo.RedirectStandardOutput = true;
 
             // Act
             _context.StartProcessAndWait();
@@ -43,11 +40,8 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
         public void Should_return_error_code_if_no_source_file(string badSourceFilePath)
         {
             // Arrange
-            string sutPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.exe");
-            _context.Process.StartInfo = new ProcessStartInfo(sutPath, $"serialize {badSourceFilePath}")
-            {
-                RedirectStandardOutput = true
-            };
+            _context.Process.StartInfo.Arguments = $"serialize {badSourceFilePath}";
+            _context.Process.StartInfo.RedirectStandardOutput = true;
 
             // Act
             _context.StartProcessAndWait();
