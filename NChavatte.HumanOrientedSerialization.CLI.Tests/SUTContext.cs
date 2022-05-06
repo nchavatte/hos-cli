@@ -40,6 +40,8 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             bool isStarted = Process.Start();
             if (isStarted)
                 Process.WaitForExit();
+            else
+                TestContext.Error.WriteLine("SUT process did not start");
             return isStarted;
         }
 

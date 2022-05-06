@@ -25,10 +25,11 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             _context.Process.StartInfo.Arguments = $"deserialize \"{serialFormPath}\" \"{actualBinaryPath}\"";
 
             // Act
-            _context.StartProcessAndWait();
+            bool started = _context.StartProcessAndWait();
 
             // Assert
             //Assert.That(_context.Process.ExitCode, Is.Zero);
+            Assert.IsTrue(started);
             Assert.IsTrue(File.Exists(actualBinaryPath));
             byte[] expectedBinary = ResourceProvider.GetResourceBytes(expectedBinaryName);
             byte[] actualBinary = File.ReadAllBytes(actualBinaryPath);
@@ -44,9 +45,10 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             _context.Process.StartInfo.Arguments = $"deserialize \"{serialFormPath}\" \"{actualBinaryPath}\"";
 
             // Act
-            _context.StartProcessAndWait();
+            bool started = _context.StartProcessAndWait();
 
             // Assert
+            Assert.IsTrue(started);
             Assert.That(_context.Process.ExitCode, Is.Not.Zero);
         }
 
@@ -58,9 +60,10 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             _context.Process.StartInfo.Arguments = $"deserialize \"{serialFormPath}\"";
 
             // Act
-            _context.StartProcessAndWait();
+            bool started = _context.StartProcessAndWait();
 
             // Assert
+            Assert.IsTrue(started);
             Assert.That(_context.Process.ExitCode, Is.Not.Zero);
         }
 

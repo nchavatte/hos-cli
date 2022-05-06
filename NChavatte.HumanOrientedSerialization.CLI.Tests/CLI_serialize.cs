@@ -26,10 +26,11 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             _context.Process.StartInfo.RedirectStandardOutput = true;
 
             // Act
-            _context.StartProcessAndWait();
+            bool started = _context.StartProcessAndWait();
 
             // Assert
             //Assert.That(_context.Process.ExitCode, Is.Zero);
+            Assert.IsTrue(started);
             string expectedSerialForm = ResourceProvider.GetResourceText(expectedSerialFormName).Trim();
             string actualSerialForm = _context.Process.StandardOutput.ReadToEnd().Trim();
             Assert.AreEqual(expectedSerialForm, actualSerialForm);
@@ -44,9 +45,10 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             _context.Process.StartInfo.RedirectStandardOutput = true;
 
             // Act
-            _context.StartProcessAndWait();
+            bool started = _context.StartProcessAndWait();
 
             // Assert
+            Assert.IsTrue(started);
             Assert.That(_context.Process.ExitCode, Is.Not.Zero);
         }
 

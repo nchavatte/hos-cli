@@ -21,9 +21,10 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             _context.Process.StartInfo.Arguments = commandLineArgs;
 
             // Act
-            _context.StartProcessAndWait();
+            bool started = _context.StartProcessAndWait();
 
             // Assert
+            Assert.IsTrue(started);
             Assert.That(_context.Process.ExitCode, Is.Not.Zero);
         }
 
