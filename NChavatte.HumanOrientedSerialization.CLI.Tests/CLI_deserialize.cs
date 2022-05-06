@@ -28,9 +28,8 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             bool started = _context.StartProcessAndWait();
 
             // Assert
-            //Assert.That(_context.Process.ExitCode, Is.Zero);
             Assert.IsTrue(started);
-            Assert.IsTrue(File.Exists(actualBinaryPath));
+            FileAssert.Exists(actualBinaryPath);
             byte[] expectedBinary = ResourceProvider.GetResourceBytes(expectedBinaryName);
             byte[] actualBinary = File.ReadAllBytes(actualBinaryPath);
             CollectionAssert.AreEqual(expectedBinary, actualBinary);
@@ -43,13 +42,14 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             string serialFormPath = "not-serial-form-file.txt";
             string actualBinaryPath = _context.GetTempFile();
             _context.Process.StartInfo.Arguments = $"deserialize \"{serialFormPath}\" \"{actualBinaryPath}\"";
+            _context.Process.StartInfo.RedirectStandardError = true;
 
             // Act
             bool started = _context.StartProcessAndWait();
 
             // Assert
-            Assert.IsTrue(started);
-            Assert.That(_context.Process.ExitCode, Is.Not.Zero);
+            Assert.IsTrue(started, "Process did not start");
+            Assert.IsNotEmpty(_context.Process.StandardError.ReadToEnd().Trim(), "No error message");
         }
 
         [Test]
