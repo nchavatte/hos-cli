@@ -1,3 +1,6 @@
+
+![Tests](https://github.com/nchavatte/hos-cli/actions/workflows/Tests.yml/badge.svg?branch=main)
+
 This command line tool is based upon [hos-lib](https://github.com/nchavatte/hos-lib) to provide file serialization/deserialization.
 
 # Usage
