@@ -24,7 +24,7 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             _context.StartProcessAndWait();
 
             // Assert
-            Assert.That(_context.Process.ExitCode, Is.EqualTo(1));
+            Assert.That(_context.Process.ExitCode, Is.Not.Zero);
         }
 
         [TearDown]
