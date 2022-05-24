@@ -19,6 +19,15 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
 
         public Process Process { get; }
 
+        public string Arguments
+        {
+            get => Process.StartInfo.Arguments;
+            set => Process.StartInfo.Arguments = $"{DllPath} {value}";
+        }
+
+        private string DllPath
+            => $"\"{Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.dll")}\"";
+
         public string WriteResourceIntoFile(string resourceName)
         {
             string path = GetTempFile();
@@ -35,7 +44,7 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
 
         public bool StartProcessAndWait()
         {
-            string sutPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.exe");
+            string sutPath = "dotnet";
             Process.StartInfo.FileName = sutPath;
             Process.StartInfo.UseShellExecute = false;
             bool isStarted = Process.Start();

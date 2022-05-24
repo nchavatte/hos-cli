@@ -22,7 +22,7 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             // Arrange
             string serialFormPath = _context.WriteResourceIntoFile(serialFormName);
             string actualBinaryPath = _context.GetTempFile();
-            _context.Process.StartInfo.Arguments = $"deserialize \"{serialFormPath}\" \"{actualBinaryPath}\"";
+            _context.Arguments = $"deserialize \"{serialFormPath}\" \"{actualBinaryPath}\"";
 
             // Act
             bool started = _context.StartProcessAndWait();
@@ -41,7 +41,7 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
             // Arrange
             string serialFormPath = "not-serial-form-file.txt";
             string actualBinaryPath = _context.GetTempFile();
-            _context.Process.StartInfo.Arguments = $"deserialize \"{serialFormPath}\" \"{actualBinaryPath}\"";
+            _context.Arguments = $"deserialize \"{serialFormPath}\" \"{actualBinaryPath}\"";
             _context.Process.StartInfo.RedirectStandardError = true;
 
             // Act
@@ -59,7 +59,7 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
         {
             // Arrange
             string serialFormPath = _context.WriteResourceIntoFile("serial-form.0.txt");
-            _context.Process.StartInfo.Arguments = $"deserialize \"{serialFormPath}\"";
+            _context.Arguments = $"deserialize \"{serialFormPath}\"";
 
             // Act
             bool started = _context.StartProcessAndWait();
