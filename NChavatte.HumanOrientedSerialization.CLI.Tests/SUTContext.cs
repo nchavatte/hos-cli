@@ -22,8 +22,11 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
         public string Arguments
         {
             get => Process.StartInfo.Arguments;
-            set => Process.StartInfo.Arguments = $"{DllPath} {value}";
+            set => Process.StartInfo.Arguments = $"--runtimeconfig {RuntimeConfigJsonPath} {DllPath} {value}";
         }
+
+        private string RuntimeConfigJsonPath
+            => $"\"{Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.runtimeconfig.json")}\"";
 
         private string DllPath
             => $"\"{Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.dll")}\"";
