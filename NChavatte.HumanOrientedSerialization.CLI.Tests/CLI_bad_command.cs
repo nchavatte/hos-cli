@@ -18,7 +18,7 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
         public void Shoud_return_error_exit_code_on_bad_command(string commandLineArgs)
         {
             // Arrange
-            _context.Arguments = commandLineArgs;
+            _context.Process.StartInfo.Arguments = commandLineArgs;
 
             // Act
             bool started = _context.StartProcessAndWait();

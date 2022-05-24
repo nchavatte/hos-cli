@@ -19,18 +19,6 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
 
         public Process Process { get; }
 
-        public string Arguments
-        {
-            get => Process.StartInfo.Arguments;
-            set => Process.StartInfo.Arguments = $"--runtimeconfig {RuntimeConfigJsonPath} {DllPath} {value}";
-        }
-
-        private string RuntimeConfigJsonPath
-            => $"\"{Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.runtimeconfig.json")}\"";
-
-        private string DllPath
-            => $"\"{Path.Combine(TestContext.CurrentContext.TestDirectory, "hos-cli.dll")}\"";
-
         public string WriteResourceIntoFile(string resourceName)
         {
             string path = GetTempFile();
@@ -47,8 +35,11 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
 
         public bool StartProcessAndWait()
         {
-            string sutPath = "dotnet";
-            Process.StartInfo.FileName = sutPath;
+            string rootPath = new DirectoryInfo(TestContext.CurrentContext.TestDirectory)
+                .Parent.Parent.Parent.Parent.FullName;
+            string sutRelativePath = Path.Combine("NChavatte.HumanOrientedSerialization.CLI"
+                , "bin", "Release", "netcoreapp3.1", "publish", "win-x64", "hos-cli.exe");
+            Process.StartInfo.FileName = Path.Combine(rootPath, sutRelativePath);
             Process.StartInfo.UseShellExecute = false;
             bool isStarted = Process.Start();
             if (isStarted)

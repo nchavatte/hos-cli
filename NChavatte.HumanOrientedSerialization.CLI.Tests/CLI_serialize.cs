@@ -22,7 +22,7 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
         {
             // Arrange
             string sourcePath = _context.WriteResourceIntoFile(sourceName);
-            _context.Arguments = $"serialize \"{sourcePath}\"";
+            _context.Process.StartInfo.Arguments = $"serialize \"{sourcePath}\"";
             _context.Process.StartInfo.RedirectStandardOutput = true;
 
             // Act
@@ -41,7 +41,7 @@ namespace NChavatte.HumanOrientedSerialization.CLI.Tests
         public void Should_return_error_code_if_no_source_file(string badSourceFilePath)
         {
             // Arrange
-            _context.Arguments = $"serialize {badSourceFilePath}";
+            _context.Process.StartInfo.Arguments = $"serialize {badSourceFilePath}";
             _context.Process.StartInfo.RedirectStandardOutput = true;
 
             // Act

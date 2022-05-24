@@ -12,10 +12,12 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 3.1.0
+        dotnet-version: 3.1
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
+    - name: Publish
+      run: dotnet publish -p:PublishProfile="NChavatte.HumanOrientedSerialization.CLI\Properties\PublishProfiles\Standalone_win-x64.pubxml"
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal
